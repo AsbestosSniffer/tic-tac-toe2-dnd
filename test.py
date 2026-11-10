@@ -19,9 +19,11 @@ class Test(unittest.TestCase):
         player2 = game.player_init() 
         self.assertFalse(player2.place_mark(0, 0))
 
-    # def test_player_placing_a_mark_ends_turn(self):
-    #     player1 = player_init()
-    #     player2 = player_init() 
-    #     player1.place_mark(0, 0)
-    #     self.assertTrue(player2.place_mark(0, 0))
+    def test_player_placing_a_mark_ends_turn(self):
+        game = game_init()
+        player1 = game.player_init()
+        player2 = game.player_init() 
+        player1.place_mark(0, 0)
+
+        self.assertTrue(player2.place_mark(0, 0))
         
