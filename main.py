@@ -14,7 +14,7 @@ class Game:
     def change_turn(self):
         self.player_turn = 3 - self.player_turn
 
-    def get_turn(self):
+    def current_player_id(self):
         return self.player_turn 
     
 class Player:
@@ -23,7 +23,7 @@ class Player:
         self.game = game
 
     def place_mark(self, x, y):
-        if self.game.get_turn() == self.id:
+        if self.game.current_player_id() == self.id:
             self.game.change_turn()
             return True
         return False
