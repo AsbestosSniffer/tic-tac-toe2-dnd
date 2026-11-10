@@ -5,7 +5,7 @@ class Game:
     def __init__(self):
         self.player_num = 1
 
-    def player_init(self, x):
+    def player_init(self):
         player = Player(self.player_num)
         self.player_num = 2
         return player
