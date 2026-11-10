@@ -2,8 +2,13 @@ def main():
     print('Hello World!')
 
 class Game:
+    def __init__(self):
+        self.player_num = 1
+
     def player_init(self, x):
-        return Player(x)
+        player = Player(self.player_num)
+        self.player_num = 2
+        return player
 
 class Player:
     def __init__(self, x):
@@ -17,10 +22,6 @@ class Player:
 
 def game_init():
     return Game()
-
-def player_init(x):
-    player = Player(x)
-    return player
 
 
 if __name__ == '__main__':
