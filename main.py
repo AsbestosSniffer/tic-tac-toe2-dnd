@@ -9,8 +9,5 @@ def player_init():
     player = Player()
     return player
 
-def place_mark(x, y):
-    pass
-
 if __name__ == '__main__':
     main()
