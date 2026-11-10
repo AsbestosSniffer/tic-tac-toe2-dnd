@@ -1,6 +1,10 @@
 def main():
     print('Hello World!')
 
+class Game:
+    def player_init(self, x):
+        return Player(x)
+
 class Player:
     def __init__(self, x):
         self.is_my_turn = x == 1
@@ -10,6 +14,9 @@ class Player:
             self.is_my_turn = False
             return True
         return False
+
+def game_init():
+    return Game()
 
 def player_init(x):
     player = Player(x)
