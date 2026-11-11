@@ -29,10 +29,15 @@ class Player:
         self.id = id
         self.game = game
 
+    def is_valid_move(self, x, y):
+        res = True
+        res &= self.game.current_player_id() == self.id
+        res &= self.game.grid[x][y] == 0
+        res &= all(x < 3 for x in chain(self.game.row_counter, self.game.col_counter, self.game.diag_counter))
+        return res
+
     def place_mark(self, x, y):
-        if self.game.current_player_id() == self.id \
-            and self.game.grid[x][y] == 0 \
-            and all(x < 3 for x in chain(self.game.row_counter, self.game.col_counter, self.game.diag_counter)):
+        if self.is_valid_move(x, y):
             self.game.grid[x][y] = 1
             self.game.row_counter[x] += 1
             self.game.col_counter[y] += 1
