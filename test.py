@@ -1,5 +1,5 @@
 import unittest
-from main import game_init
+from main import game_init, GameStatus
 
 class Test(unittest.TestCase):
     def test_place_your_mark_on_an_empty_cell(self):
@@ -66,3 +66,23 @@ class Test(unittest.TestCase):
         player1.place_mark(2,0)
         player2.place_mark(1,2)
         self.assertFalse(player1.place_mark(0,2))
+
+    # program can detect someone won but not who
+
+    def test_detect_player1_win(self):
+        game = game_init()
+        player1 = game.player_init()
+        player2 = game.player_init()
+
+        # X O _
+        # X O _
+        # X _ _
+
+        player1.place_mark(0,0)
+        player2.place_mark(0,1)
+        player1.place_mark(1,0)
+        player2.place_mark(1,1)
+        player1.place_mark(0,2)
+        status = game.get_status()
+        self.assertEqual(status, GameStatus.PLAYER1_WINS)
+        

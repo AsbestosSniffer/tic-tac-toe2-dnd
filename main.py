@@ -1,7 +1,13 @@
 from itertools import chain
+from enum import Enum
 
 def main():
     print('Hello World!')
+
+class GameStatus(Enum):
+    PLAYER1_WINS = 1
+    PLAYER2_WINS = 2
+    DRAW = 3
 
 class Game:
     def __init__(self):
@@ -12,6 +18,11 @@ class Game:
         self.row_counter = [0, 0, 0]
         self.col_counter = [0, 0, 0]
         self.diag_counter = [0, 0]
+
+        self.status = GameStatus.PLAYER1_WINS 
+
+    def get_status(self):
+        return self.status
 
     def player_init(self):
         player = Player(self, self.player_num)
