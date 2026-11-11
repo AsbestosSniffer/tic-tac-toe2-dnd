@@ -36,16 +36,19 @@ class Player:
         res &= all(x < 3 for x in chain(self.game.row_counter, self.game.col_counter, self.game.diag_counter))
         return res
 
+    def update_state(self, x, y):
+        self.game.grid[x][y] = 1
+        self.game.row_counter[x] += 1
+        self.game.col_counter[y] += 1
+        if x == y:
+            self.game.diag_counter[0] += 1
+        if x == 2-y:
+            self.game.diag_counter[1] += 1
+        self.game.change_turn()
+
     def place_mark(self, x, y):
         if self.is_valid_move(x, y):
-            self.game.grid[x][y] = 1
-            self.game.row_counter[x] += 1
-            self.game.col_counter[y] += 1
-            if x == y:
-                self.game.diag_counter[0] += 1
-            if x == 2-y:
-                self.game.diag_counter[1] += 1
-            self.game.change_turn()
+            self.update_state(x, y)
             return True
         return False
 
