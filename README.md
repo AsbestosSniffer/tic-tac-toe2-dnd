@@ -1,7 +1,7 @@
-- [ ] If the board is completely filled such that no row, column, or diagonal has 3 Xs or 3 Os, then no winner exists and it's a draw.
-- [o] The game ends when there are 3 Xs or 3 Os in a row, column, or diagonal. Then, a winner is declared.
+- [x] If the board is completely filled such that no row, column, or diagonal has 3 Xs or 3 Os, then no winner exists and it's a draw.
+- [x] The game ends when there are 3 Xs or 3 Os in a row, column, or diagonal. Then, a winner is declared.
 - [x] A player cannot place a mark unless it's his turn.
-- [ ] When it's a player's turn, they have to place a mark (no skips).
+- [x] When it's a player's turn, they have to place a mark (no skips).
 - [ ] Each player takes turns placing one 'X' or 'O' in a cell of the grid. <!-- how to specify this as a test case that doesn't already exist?>
 - [x] You can place your mark on an empty cell.
 - [x] You cannot place a mark on an occupied cell.

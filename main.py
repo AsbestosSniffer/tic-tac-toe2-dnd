@@ -35,6 +35,18 @@ class Game:
     def current_player_id(self):
         return self.player_turn 
 
+    def update_grid(self, x, y):
+        self.grid[x][y] = 1
+
+    def update_counters(self, x, y, delta):
+        self.row_counter[x] += delta
+        self.col_counter[y] += delta
+        if x == y:
+            self.diag_counter[0] += delta
+        if x == 2-y:
+            self.diag_counter[1] += delta
+        self.total_counter += 1
+
     def check_gameover(self):
         if any(x == 3 for x in chain(self.row_counter, self.col_counter, self.diag_counter)):
             self.result = GameStatus.PLAYER1_WINS
@@ -57,14 +69,8 @@ class Player:
         return res
 
     def update_state(self, x, y):
-        self.game.grid[x][y] = 1
-        self.game.row_counter[x] += self.increment
-        self.game.col_counter[y] += self.increment
-        if x == y:
-            self.game.diag_counter[0] += self.increment
-        if x == 2-y:
-            self.game.diag_counter[1] += self.increment
-        self.game.total_counter += 1
+        self.game.update_grid(x, y)
+        self.game.update_counters(x, y, self.increment)
         self.game.check_gameover()
         self.game.change_turn()
 
