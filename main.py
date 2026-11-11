@@ -19,10 +19,10 @@ class Game:
         self.col_counter = [0, 0, 0]
         self.diag_counter = [0, 0]
 
-        self.status = GameStatus.PLAYER1_WINS 
+        self.result = None
 
-    def get_status(self):
-        return self.status
+    def get_result(self):
+        return self.result
 
     def player_init(self):
         player = Player(self, self.player_num)
@@ -37,9 +37,9 @@ class Game:
 
     def check_gameover(self):
         if any(x == 3 for x in chain(self.row_counter, self.col_counter, self.diag_counter)):
-            self.status = GameStatus.PLAYER1_WINS
+            self.result = GameStatus.PLAYER1_WINS
         elif any(x == -3 for x in chain(self.row_counter, self.col_counter, self.diag_counter)):
-            self.status = GameStatus.PLAYER2_WINS
+            self.result = GameStatus.PLAYER2_WINS
     
 class Player:
     def __init__(self, game, id):
@@ -51,7 +51,7 @@ class Player:
         res = True
         res &= self.game.current_player_id() == self.id
         res &= self.game.grid[x][y] == 0
-        res &= all(abs(x) < 3 for x in chain(self.game.row_counter, self.game.col_counter, self.game.diag_counter))
+        res &= self.game.get_result() is None 
         return res
 
     def update_state(self, x, y):
