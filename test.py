@@ -13,7 +13,7 @@ class Test(unittest.TestCase):
         player.place_mark(0, 1)
         self.assertTrue(player.place_mark(0, 0) == False)
 
-    def test_player_placing_a_mark_ends_turn(self):
+    def test_player2_cannot_go_first(self):
         game = game_init()
         player1 = game.player_init()
         player2 = game.player_init() 
@@ -25,5 +25,11 @@ class Test(unittest.TestCase):
         player2 = game.player_init() 
         player1.place_mark(0, 0)
 
-        self.assertTrue(player2.place_mark(0, 0))
-        
+        self.assertTrue(player2.place_mark(0, 1))
+
+    def test_place_mark_on_occupied_cell(self):
+        game = game_init()
+        player1 = game.player_init()
+        player2 = game.player_init()
+        player1.place_mark(0,0)
+        self.assertFalse(player2.place_mark(0,0))
