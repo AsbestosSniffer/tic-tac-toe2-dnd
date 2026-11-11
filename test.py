@@ -82,7 +82,6 @@ class Test(unittest.TestCase):
         player2.place_mark(0,1)
         player1.place_mark(1,0)
         player2.place_mark(1,1)
-        player1.place_mark(0,2)
+        player1.place_mark(2,0)
         status = game.get_status()
         self.assertEqual(status, GameStatus.PLAYER1_WINS)
-        
