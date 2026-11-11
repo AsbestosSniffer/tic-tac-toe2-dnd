@@ -18,7 +18,7 @@ class Game:
         self.row_counter = [0, 0, 0]
         self.col_counter = [0, 0, 0]
         self.diag_counter = [0, 0]
-
+        self.total_counter = 0
         self.result = None
 
     def get_result(self):
@@ -40,6 +40,8 @@ class Game:
             self.result = GameStatus.PLAYER1_WINS
         elif any(x == -3 for x in chain(self.row_counter, self.col_counter, self.diag_counter)):
             self.result = GameStatus.PLAYER2_WINS
+        elif self.total_counter >= 9:
+            self.result = GameStatus.DRAW
     
 class Player:
     def __init__(self, game, id):
@@ -62,6 +64,7 @@ class Player:
             self.game.diag_counter[0] += self.increment
         if x == 2-y:
             self.game.diag_counter[1] += self.increment
+        self.game.total_counter += 1
         self.game.check_gameover()
         self.game.change_turn()
 
