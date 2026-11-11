@@ -34,27 +34,35 @@ class Game:
 
     def current_player_id(self):
         return self.player_turn 
+
+    def check_gameover(self):
+        if any(x == 3 for x in chain(self.row_counter, self.col_counter, self.diag_counter)):
+            self.status = GameStatus.PLAYER1_WINS
+        elif any(x == -3 for x in chain(self.row_counter, self.col_counter, self.diag_counter)):
+            self.status = GameStatus.PLAYER2_WINS
     
 class Player:
     def __init__(self, game, id):
         self.id = id
         self.game = game
+        self.increment = 1 if self.id == 1 else -1
 
     def is_valid_move(self, x, y):
         res = True
         res &= self.game.current_player_id() == self.id
         res &= self.game.grid[x][y] == 0
-        res &= all(x < 3 for x in chain(self.game.row_counter, self.game.col_counter, self.game.diag_counter))
+        res &= all(abs(x) < 3 for x in chain(self.game.row_counter, self.game.col_counter, self.game.diag_counter))
         return res
 
     def update_state(self, x, y):
         self.game.grid[x][y] = 1
-        self.game.row_counter[x] += 1
-        self.game.col_counter[y] += 1
+        self.game.row_counter[x] += self.increment
+        self.game.col_counter[y] += self.increment
         if x == y:
-            self.game.diag_counter[0] += 1
+            self.game.diag_counter[0] += self.increment
         if x == 2-y:
-            self.game.diag_counter[1] += 1
+            self.game.diag_counter[1] += self.increment
+        self.game.check_gameover()
         self.game.change_turn()
 
     def place_mark(self, x, y):

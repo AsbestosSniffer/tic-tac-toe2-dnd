@@ -85,3 +85,22 @@ class Test(unittest.TestCase):
         player1.place_mark(2,0)
         status = game.get_status()
         self.assertEqual(status, GameStatus.PLAYER1_WINS)
+
+    
+    def test_detect_player2_win(self):
+        game = game_init()
+        player1 = game.player_init()
+        player2 = game.player_init()
+
+        # X O X
+        # X O _
+        # _ O _
+
+        player1.place_mark(0,0)
+        player2.place_mark(0,1)
+        player1.place_mark(1,0)
+        player2.place_mark(1,1)
+        player1.place_mark(0,2)
+        player2.place_mark(2,1)
+        status = game.get_status()
+        self.assertEqual(status, GameStatus.PLAYER2_WINS)
