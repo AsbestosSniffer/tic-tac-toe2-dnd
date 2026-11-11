@@ -1,3 +1,5 @@
+from itertools import chain
+
 def main():
     print('Hello World!')
 
@@ -7,6 +9,9 @@ class Game:
         self.player_turn = 1
         # 0 indicates empty, 1 indicates occupied
         self.grid = [[0 for _ in range(3)] for _ in range(3)]
+        self.row_counter = [0, 0, 0]
+        self.col_counter = [0, 0, 0]
+        self.diag_counter = [0, 0]
 
     def player_init(self):
         player = Player(self, self.player_num)
@@ -26,8 +31,15 @@ class Player:
 
     def place_mark(self, x, y):
         if self.game.current_player_id() == self.id \
-            and self.game.grid[x][y] == 0:
+            and self.game.grid[x][y] == 0 \
+            and all(x < 3 for x in chain(self.game.row_counter, self.game.col_counter, self.game.diag_counter)):
             self.game.grid[x][y] = 1
+            self.game.row_counter[x] += 1
+            self.game.col_counter[y] += 1
+            if x == y:
+                self.game.diag_counter[0] += 1
+            if x == 2-y:
+                self.game.diag_counter[1] += 1
             self.game.change_turn()
             return True
         return False
