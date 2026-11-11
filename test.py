@@ -38,9 +38,31 @@ class Test(unittest.TestCase):
         game = game_init()
         player1 = game.player_init()
         player2 = game.player_init()
+
+        # X X X
+        # O O *
+        # _ _ _
+
         player1.place_mark(0,0)
         player2.place_mark(1,0)
         player1.place_mark(0,1)
         player2.place_mark(1,1)
         player1.place_mark(0,2)
         self.assertFalse(player2.place_mark(1,2))
+
+    def test_player1_cannot_move_after_player2_wins(self):
+        game = game_init()
+        player1 = game.player_init()
+        player2 = game.player_init()
+           
+        # X X *
+        # O O O
+        # X _ _
+
+        player1.place_mark(0,0)
+        player2.place_mark(1,0)
+        player1.place_mark(0,1)
+        player2.place_mark(1,1)
+        player1.place_mark(2,0)
+        player2.place_mark(1,2)
+        self.assertFalse(player1.place_mark(0,2))
