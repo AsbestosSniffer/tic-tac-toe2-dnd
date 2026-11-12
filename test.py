@@ -125,3 +125,9 @@ class Test(unittest.TestCase):
         player1.place_mark(2,2)
         status = game.get_result()
         self.assertEqual(status, GameStatus.DRAW)
+
+    def test_cannot_place_mark_outside_grid(self):
+        game = Game()
+        player = game.player_init()
+        self.assertFalse(player.place_mark(-1, 0))
+        self.assertFalse(player.place_mark(0, 3))

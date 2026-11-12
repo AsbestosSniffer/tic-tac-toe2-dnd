@@ -62,11 +62,10 @@ class Player:
         self.increment = 1 if self.id == 1 else -1
 
     def is_valid_move(self, x, y):
-        res = True
-        res &= self.game.current_player_id() == self.id
-        res &= self.game.grid[x][y] == 0
-        res &= self.game.get_result() is None 
-        return res
+        return self.game.current_player_id() == self.id \
+            and x >= 0 and x <= 2 and y >= 0 and y <= 2 \
+            and self.game.grid[x][y] == 0 \
+            and self.game.get_result() is None 
 
     def update_state(self, x, y):
         self.game.update_grid(x, y)
