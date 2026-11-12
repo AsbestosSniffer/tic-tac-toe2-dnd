@@ -1,4 +1,4 @@
-from main import game_init, GameStatus
+from main import GameStatus
 from enum import Enum 
 
 class CliMsgs(Enum):

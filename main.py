@@ -80,9 +80,5 @@ class Player:
             return True
         return False
 
-def game_init():
-    return Game()
-
-
 if __name__ == '__main__':
     main()
