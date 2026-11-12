@@ -1,12 +1,12 @@
 from game import GameStatus
-from enum import Enum 
+from enum import EnumDict 
 
-class CliMsgs(Enum):
-    INVALID_INPUT = 1,
-    PLAYER1_WIN = 2,
-    PLAYER2_WIN = 3,
-    DRAW = 4,
-    WRONG_PLAYER_TURN = 5
+class CliMsgs(EnumDict):
+    INVALID_INPUT = "Invalid input.",
+    PLAYER1_WIN = "Player 1 wins! Game over.",
+    PLAYER2_WIN = "Player 2 wins! Game over.",
+    DRAW = "Draw! Game over.",
+    WRONG_PLAYER_TURN = "It's the other player's turn."
 
 def main():
     pass
