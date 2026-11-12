@@ -1,43 +1,18 @@
 from main import game_init, GameStatus
+from enum import Enum 
+
+class ErrorMsgs(Enum):
+    INVALID_INPUT = 1
 
 def main():
-    game = game_init()
-    player1 = game.player_init()
-    player2 = game.player_init()
+    pass
 
-    done = False
-    while not done:
-        for r in game.grid:
-            print(r)
-            
-        inp = input("input like 'X12' or 'O00'")
-        try:
-            symbol, r, c = inp[0], int(inp[1]), int(inp[2])
-        except:
-            print("incorrect input format")
+class Cli:
+    def __init__(self):
+        pass 
 
-        if symbol in ['x','X']:
-            try:
-                player1.place_mark(r, c)
-            except:
-                print("invalid move")
-        elif symbol in ['o', 'O']:
-            try:
-                player2.place_mark(r, c)
-            except:
-                print("invalid move")
-        else:
-            print("incorrect player symbol")
+    def prompt(self, x):
+        pass 
 
-        game.check_gameover()
-        done = game.get_result()
-
-    if done == GameStatus.PLAYER1_WINS:
-        print("player 1 wins")
-    elif done == GameStatus.PLAYER2_WINS:
-        print("player 2 wins")
-    else:
-        print("draw")
-
-if __name__ == "__main__":
-    main()
+    def current_printed(self):
+        return ErrorMsgs.INVALID_INPUT 
