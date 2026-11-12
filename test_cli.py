@@ -50,3 +50,10 @@ class TestCli(TestCase):
         cli.prompt('o21')
         cli.prompt('x22')
         self.assertEqual(cli.current_printed(), CliMsgs.DRAW)
+
+    def test_same_player_tries_to_go_twice(self):
+        game = Game()
+        cli = Cli(game)
+        cli.prompt('x00')
+        cli.prompt('x00')
+        self.assertEqual(cli.current_printed(), CliMsgs.WRONG_PLAYER_TURN)

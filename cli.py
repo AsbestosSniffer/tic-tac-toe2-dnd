@@ -5,7 +5,8 @@ class CliMsgs(Enum):
     INVALID_INPUT = 1,
     PLAYER1_WIN = 2,
     PLAYER2_WIN = 3,
-    DRAW = 4
+    DRAW = 4,
+    WRONG_PLAYER_TURN = 5
 
 def main():
     pass
@@ -32,9 +33,11 @@ class Cli:
             return 
         
         if p_char == 'x':
-            self.player1.place_mark(x, y)
+            if not self.player1.place_mark(x, y):
+                self.to_print = CliMsgs.WRONG_PLAYER_TURN
         else:
-            self.player2.place_mark(x, y)
+            if not self.player2.place_mark(x, y):
+                self.to_print = CliMsgs.WRONG_PLAYER_TURN
 
         match self.game.get_result():
             case GameStatus.PLAYER1_WINS:
