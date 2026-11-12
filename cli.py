@@ -25,6 +25,8 @@ class Cli:
         return move_player, move_x, move_y
 
     def prompt(self, inp):
+        self.to_print = None 
+
         try:
             p_char, x, y = self.__parse_input__(inp)
         except:
@@ -45,8 +47,6 @@ class Cli:
                 self.to_print = CliMsgs.PLAYER2_WIN
             case GameStatus.DRAW:
                 self.to_print = CliMsgs.DRAW
-
-        self.to_print = None 
         
-    def current_printed(self):
+    def get_to_print(self):
         return self.to_print

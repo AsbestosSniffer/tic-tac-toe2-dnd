@@ -8,13 +8,13 @@ class TestCli(TestCase):
         game = Game()
         cli = Cli(game)
         cli.prompt('badtest')
-        self.assertEqual(cli.current_printed(), CliMsgs.INVALID_INPUT)
+        self.assertEqual(cli.get_to_print(), CliMsgs.INVALID_INPUT)
 
     def test_correct_input_no_error(self):
         game = Game()
         cli = Cli(game)
         cli.prompt('x12')
-        self.assertIsNone(cli.current_printed())
+        self.assertIsNone(cli.get_to_print())
 
     def test_player1_win_prints_correct_winner(self):
         game = Game()
@@ -24,7 +24,7 @@ class TestCli(TestCase):
         cli.prompt('x01')
         cli.prompt('o11')
         cli.prompt('x02')
-        self.assertEqual(cli.current_printed(), CliMsgs.PLAYER1_WIN)
+        self.assertEqual(cli.get_to_print(), CliMsgs.PLAYER1_WIN)
 
     def test_player2_win_prints_correct_winner(self):
         game = Game()
@@ -35,7 +35,7 @@ class TestCli(TestCase):
         cli.prompt('o11')
         cli.prompt('x20')
         cli.prompt('o12')
-        self.assertEqual(cli.current_printed(), CliMsgs.PLAYER2_WIN)
+        self.assertEqual(cli.get_to_print(), CliMsgs.PLAYER2_WIN)
 
     def test_when_game_draws_prints_draw(self):
         game = Game()
@@ -49,11 +49,11 @@ class TestCli(TestCase):
         cli.prompt('x20')
         cli.prompt('o21')
         cli.prompt('x22')
-        self.assertEqual(cli.current_printed(), CliMsgs.DRAW)
+        self.assertEqual(cli.get_to_print(), CliMsgs.DRAW)
 
     def test_same_player_tries_to_go_twice(self):
         game = Game()
         cli = Cli(game)
         cli.prompt('x00')
         cli.prompt('x00')
-        self.assertEqual(cli.current_printed(), CliMsgs.WRONG_PLAYER_TURN)
+        self.assertEqual(cli.get_to_print(), CliMsgs.WRONG_PLAYER_TURN)
