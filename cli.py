@@ -3,7 +3,8 @@ from enum import Enum
 
 class CliMsgs(Enum):
     INVALID_INPUT = 1,
-    PLAYER1_WIN = 2
+    PLAYER1_WIN = 2,
+    PLAYER2_WIN = 3
 
 def main():
     pass
@@ -37,6 +38,8 @@ class Cli:
         match self.game.get_result():
             case GameStatus.PLAYER1_WINS:
                 self.to_print = CliMsgs.PLAYER1_WIN
+            case GameStatus.PLAYER2_WINS:
+                self.to_print = CliMsgs.PLAYER2_WIN
         
     def current_printed(self):
         return self.to_print
