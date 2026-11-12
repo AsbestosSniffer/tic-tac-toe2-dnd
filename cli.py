@@ -4,7 +4,8 @@ from enum import Enum
 class CliMsgs(Enum):
     INVALID_INPUT = 1,
     PLAYER1_WIN = 2,
-    PLAYER2_WIN = 3
+    PLAYER2_WIN = 3,
+    DRAW = 4
 
 def main():
     pass
@@ -40,6 +41,8 @@ class Cli:
                 self.to_print = CliMsgs.PLAYER1_WIN
             case GameStatus.PLAYER2_WINS:
                 self.to_print = CliMsgs.PLAYER2_WIN
+            case GameStatus.DRAW:
+                self.to_print = CliMsgs.DRAW
         
     def current_printed(self):
         return self.to_print

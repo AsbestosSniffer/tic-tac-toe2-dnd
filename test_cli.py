@@ -36,3 +36,17 @@ class TestCli(TestCase):
         cli.prompt('x20')
         cli.prompt('o12')
         self.assertEqual(cli.current_printed(), CliMsgs.PLAYER2_WIN)
+
+    def test_when_game_draws_prints_draw(self):
+        game = Game()
+        cli = Cli(game)
+        cli.prompt('x00')
+        cli.prompt('o10')
+        cli.prompt('x01')
+        cli.prompt('o11')
+        cli.prompt('x12')
+        cli.prompt('o02')
+        cli.prompt('x20')
+        cli.prompt('o21')
+        cli.prompt('x22')
+        self.assertEqual(cli.current_printed(), CliMsgs.DRAW)
