@@ -1,6 +1,6 @@
 from unittest import TestCase
 from cli import Cli, CliMsgs
-from main import Game
+from game import Game
 
 class TestCli(TestCase):
 

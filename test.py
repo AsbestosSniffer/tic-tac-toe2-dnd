@@ -1,5 +1,5 @@
 import unittest
-from main import Game, GameStatus
+from game import Game, GameStatus
 
 class Test(unittest.TestCase):
     def test_place_your_mark_on_an_empty_cell(self):
