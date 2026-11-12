@@ -27,7 +27,6 @@ class Cli:
     def prompt(self, inp):
         try:
             p_char, x, y = self.__parse_input__(inp)
-            self.to_print = None
         except:
             self.to_print = CliMsgs.INVALID_INPUT
             return 
@@ -46,6 +45,8 @@ class Cli:
                 self.to_print = CliMsgs.PLAYER2_WIN
             case GameStatus.DRAW:
                 self.to_print = CliMsgs.DRAW
+
+        self.to_print = None 
         
     def current_printed(self):
         return self.to_print
